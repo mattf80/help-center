@@ -1,0 +1,24 @@
+<div class="articles">
+  <div class="articles__title">
+    <h1>
+      <i class="fa fa-file-code-o" aria-hidden="true"></i>
+      All articles
+    </h1>
+    <a class="btn__add">
+      <i class="fa fa-refresh" aria-hidden="true"></i>
+      Sync
+    </a>
+  </div>
+  <div *ngIf="articles$ | async as articles; else loading;">
+    <div class="message" *ngIf="!articles.length">
+      <i class="fa fa-frown-o" aria-hidden="true"></i>
+      Nothing to see here...
+    </div>
+  </div>
+  <ng-template #loading>
+    <div class="message">
+      <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+      Fetching articles...
+    </div>
+  </ng-template>
+</div>

@@ -1,8 +1,11 @@
-<div class="container">
-  <div class="starter-template">
-    <h1>Help Center Manager</h1>
-    <p class="lead">Use this app to manage articles, macros and more!</p>
-  </div>
+<div>
+    <app-header [user]="user$ | async" (logout)="onLogout()">
+
+    </app-header>
+    <app-nav *ngIf="(user$ | async)?.authenticated">
+
+    </app-nav>
+
   <div class="wrapper">
     <router-outlet></router-outlet>
   </div>
