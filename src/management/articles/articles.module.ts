@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 
 import { ArticlesComponent } from './containers/articles/articles.component';
+import { ArticleComponent } from './containers/article/article.component';
 
 export const ROUTES: Routes = [
     {
@@ -22,6 +23,9 @@ export const ROUTES: Routes = [
         SharedModule
     ],
     exports: [],
-    declarations: [ArticlesComponent]
+    declarations: [
+        ArticlesComponent,
+        ArticleComponent
+    ]
 })
 export class ArticlesModule { }
