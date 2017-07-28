@@ -1,0 +1,18 @@
+<div class="article-form">
+    <form [formGroup]="form" (ngSubmit)="createReviewNote()">
+        <div class="review-note-form__name">
+            <label>
+                <h3>Note text</h3>
+                <input type="text"
+                    placeholder="Add your note here"
+                    formControlName="body">
+            </label>
+            <button type="submit" class="review-note-form__add">
+                Save
+            </button>
+        </div>
+        <div>
+
+        </div>
+    </form>
+</div>

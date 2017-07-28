@@ -14,6 +14,11 @@
       <i class="fa fa-frown-o" aria-hidden="true"></i>
       Nothing to see here...
     </div>
+    <div *ngIf="articles.length">
+      <div *ngFor="let article of articles" (click)="goToArticle(article)">
+        {{ article.title }}
+      </div>
+    </div>
     <!-- articles ngfor here -->
   </div>
   <ng-template #loading>

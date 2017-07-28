@@ -16,6 +16,12 @@ import { ManagementModule } from './../management/management.module';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
 import { AppNavComponent } from './components/app-nav/app-nav.component';
 
+
+import { HttpClientModule } from '@angular/common/http';
+
+//third part
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 //routes
 export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'inbox' }
@@ -29,9 +35,11 @@ export const ROUTES: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),
+    NgbModule.forRoot(),
     AuthModule,
     ManagementModule
   ],

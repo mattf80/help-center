@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Store } from './../../../../store';
 
 import { Observable } from 'rxjs/Observable';
@@ -20,7 +21,8 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 
   constructor(
     private articlesService: ArticlesService,
-    private store: Store
+    private store: Store,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -30,6 +32,10 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  goToArticle(article: Article) {
+    this.router.navigate([`../articles/${article.$key}`])
   }
 
 }
