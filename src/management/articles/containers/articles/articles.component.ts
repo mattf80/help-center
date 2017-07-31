@@ -35,7 +35,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   }
 
   goToArticle(article: Article) {
-    this.router.navigate([`../articles/${article.$key}`])
+    this.router.navigate([`../articles/${article.id}`])
   }
 
 }

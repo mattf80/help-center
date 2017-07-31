@@ -1,0 +1,10 @@
+<div class="list-item">
+  <a [routerLink]="getRoute(item)">
+    <p class="list-item__title">{{ item.title }}</p>
+    <p class="list-item__ingredients">
+      <span>
+         Expires: {{ item.expiryDate }}
+        </span>
+    </p>
+  </a>
+</div>

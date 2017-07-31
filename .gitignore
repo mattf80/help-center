@@ -9,6 +9,9 @@
 /node_modules
 /functions
 
+# config
+/src/environments
+
 # IDEs and editors
 /.idea
 .project

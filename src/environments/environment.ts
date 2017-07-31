@@ -4,5 +4,13 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
+  zendesk: {
+    username: 'frowe.m@cambridgeesol.org',
+    token: '',
+    //subdomain: 'esolhelpdesk1380528590',
+    remoteUri: 'https://esolhelpdesk1380528590.zendesk.com/api/v2',
+    hcremoteUri: 'https://esolhelpdesk1380528590.zendesk.com/api/v2/help_center',
+    incremental_remoteUri: 'https://esolhelpdesk1380528590.zendesk.com/hc/api/v2'
+  }
+}

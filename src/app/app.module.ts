@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './containers/app/app.component';
 
@@ -39,6 +40,7 @@ export const ROUTES: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),
+    FlexLayoutModule,
     NgbModule.forRoot(),
     AuthModule,
     ManagementModule

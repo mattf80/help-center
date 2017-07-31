@@ -1,3 +1,13 @@
-<app-article-detail [article]="article"></app-article-detail>
-{{item | json}}
-<app-review-note-form></app-review-note-form>
+<div>
+  <div *ngIf="article$ | async as article; else loading">
+    <app-article-detail [article]="article" [zdarticle]="zdarticle$ | async" (changes)="updateArticle($event)"></app-article-detail>
+  </div>
+  <ng-template #loading>
+    <div class="message">
+      Fetching article...
+    </div>
+  </ng-template>
+
+  <app-review-note-form></app-review-note-form>
+</div>
+{{ article$ | async | json}} {{ zdarticle$ | async | json}}
