@@ -79,6 +79,20 @@
                 </div>
             </form>
             <hr>
+            <div fxLayout>
+                <div fxFlex="45%">
+                    <h6>
+                        <span>Current status: </span> EXPIRED
+                    </h6>
+                </div>
+                <div fxFlex>
+                    <h6>
+                        <span>Edit expiry date</span>
+                    </h6>
+                    <ngb-datepicker #dp (navigate)="date = $event.next"></ngb-datepicker>
+                </div>
+                {{ newExpiryDate }}
+            </div>
             <pre>{{form.value | json}}</pre>
         </div>
     </div>

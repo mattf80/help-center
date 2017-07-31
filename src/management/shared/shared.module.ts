@@ -6,6 +6,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 //third party modules
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 //components
 import { ListItemComponent } from './components/list-item/list-item.component';
@@ -18,7 +19,8 @@ import { ArticlesService } from './services/articles/articles.service';
         CommonModule,
         RouterModule,
         AngularFireDatabaseModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        NgbModule
     ],
     exports: [
         ListItemComponent,

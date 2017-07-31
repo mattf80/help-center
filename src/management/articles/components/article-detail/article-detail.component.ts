@@ -2,6 +2,8 @@ import { Article } from './../../../shared/services/articles/articles.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
     selector: 'app-article-detail',
     styleUrls: ['article-detail.component.scss'],
@@ -34,22 +36,23 @@ export class ArticleDetailComponent implements OnInit, OnChanges {
         //     console.log(value);
         //     this.changes.emit(this.form);
         // });
-     }
+    }
 
-     ngOnChanges(changes: SimpleChanges) {
-        if (changes.zdarticle.currentValue) {
-            const x = changes.zdarticle.currentValue;
-            this.populateForm(x.article);
+    ngOnChanges(changes: SimpleChanges) {
+        if (this.zdarticle) {
+            if (changes.zdarticle.currentValue) {
+                const x = changes.zdarticle.currentValue;
+                this.populateForm(x.article);
+            };
         };
-        
-     }
+    }
 
-     populateForm(article: any) {
-         console.log(article);
-         this.form.patchValue({
-             draft: article.draft,
-             outdated: article.outdated,
-             promoted: article.promoted
-         });
-     }
+    populateForm(article: any) {
+        console.log(article);
+        this.form.patchValue({
+            draft: article.draft,
+            outdated: article.outdated,
+            promoted: article.promoted
+        });
+    }
 }
