@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { FirebaseArticle } from './../../../shared/services/articles/fb-articles.service';
+import { ReviewNote } from './../../../shared/services/review-notes/review-note.service';
+import { Component, OnInit, Output, Input, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -10,8 +12,18 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 export class ReviewNoteFormComponent implements OnInit {
 
+    @Input()
+    fbArticle: FirebaseArticle;
+
+    @Output()
+    create = new EventEmitter<ReviewNote>();
+
     form = this.fb.group({
-        body: ['', Validators.required]
+        user: this.fb.group({
+            displayName: ['']
+        }),
+        body: ['', Validators.required],
+        dateAdded: ['']
     })
 
     constructor(
@@ -21,6 +33,6 @@ export class ReviewNoteFormComponent implements OnInit {
     ngOnInit() { }
 
     createReviewNote(){
-        console.log(this.form.value);
+        this.create.emit(this.form.value);
     }
 }

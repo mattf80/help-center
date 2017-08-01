@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { Article, ArticlesService } from './../../../shared/services/articles/articles.service';
+import { FirebaseArticle, FirebaseArticlesService } from './../../../shared/services/articles/fb-articles.service';
 
 
 @Component({
@@ -16,17 +16,17 @@ import { Article, ArticlesService } from './../../../shared/services/articles/ar
 })
 export class ArticlesComponent implements OnInit, OnDestroy {
 
-  articles$: Observable<Article[]>
+  articles$: Observable<FirebaseArticle[]>
   subscription: Subscription;
 
   constructor(
-    private articlesService: ArticlesService,
+    private articlesService: FirebaseArticlesService,
     private store: Store,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.articles$ = this.store.select<Article[]>('articles');
+    this.articles$ = this.store.select<FirebaseArticle[]>('articles');
     this.subscription = this.articlesService.articles$.subscribe();
   }
 
@@ -34,7 +34,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  goToArticle(article: Article) {
+  goToArticle(article: FirebaseArticle) {
     this.router.navigate([`../articles/${article.id}`])
   }
 

@@ -1,22 +1,19 @@
-import { Article } from './../../../shared/services/articles/articles.service';
+import { ZendeskArticle } from './../../../shared/services/articles/zd-articles.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'app-article-detail',
-    styleUrls: ['article-detail.component.scss'],
-    templateUrl: 'article-detail.component.html'
+    selector: 'zd-article-detail',
+    styleUrls: ['zd-article-detail.component.scss'],
+    templateUrl: 'zd-article-detail.component.html'
 })
 
-export class ArticleDetailComponent implements OnInit, OnChanges {
+export class ZendeskArticleDetailComponent implements OnInit {
 
     @Input()
-    article: Article;
-
-    @Input()
-    zdarticle: any;
+    zdarticle: ZendeskArticle;
 
     @Output()
     changes = new EventEmitter<FormGroup>();
@@ -27,24 +24,15 @@ export class ArticleDetailComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         this.form = this.fb.group({
-            draft: '',
-            outdated: '',
-            promoted: ''
+            draft: this.zdarticle.article.draft,
+            outdated: this.zdarticle.article.outdated,
+            promoted: this.zdarticle.article.promoted
         });
 
         // this.form.get('draft').valueChanges.subscribe(value => {
         //     console.log(value);
         //     this.changes.emit(this.form);
         // });
-    }
-
-    ngOnChanges(changes: SimpleChanges) {
-        if (this.zdarticle) {
-            if (changes.zdarticle.currentValue) {
-                const x = changes.zdarticle.currentValue;
-                this.populateForm(x.article);
-            };
-        };
     }
 
     populateForm(article: any) {

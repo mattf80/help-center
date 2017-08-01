@@ -10,7 +10,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { ArticlesComponent } from './containers/articles/articles.component';
 import { ArticleComponent } from './containers/article/article.component';
-import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
+import { ZendeskArticleDetailComponent } from './components/zd-article-detail/zd-article-detail.component';
+import { FirebaseArticleDetailComponent } from './components/fb-article-detail/fb-article-detail.component';
 
 
 export const ROUTES: Routes = [
@@ -35,7 +36,8 @@ export const ROUTES: Routes = [
         ArticlesComponent,
         ArticleComponent,
         ReviewNoteFormComponent,
-        ArticleDetailComponent
+        ZendeskArticleDetailComponent,
+        FirebaseArticleDetailComponent
     ]
 })
 export class ArticlesModule { }

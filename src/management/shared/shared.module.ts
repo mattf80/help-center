@@ -1,3 +1,4 @@
+import { ReviewNotesService } from './services/review-notes/review-note.service';
 
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListItemComponent } from './components/list-item/list-item.component';
 
 //services
-import { ArticlesService } from './services/articles/articles.service';
+import { ZendeskArticlesService } from './services/articles/zd-articles.service';
+import { FirebaseArticlesService } from './services/articles/fb-articles.service';
 
 @NgModule({
     imports: [
@@ -35,7 +37,9 @@ export class SharedModule {
         return {
             ngModule: SharedModule,
             providers: [
-                ArticlesService
+                ZendeskArticlesService,
+                FirebaseArticlesService,
+                ReviewNotesService
             ]
         }
     }

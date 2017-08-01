@@ -1,0 +1,73 @@
+<div *ngIf="zdarticle">
+    <form [formGroup]="form">
+        <div fxLayout fxLayoutGap="24px">
+
+            <div class="article__metadata" fxFlex="45%">
+                <div fxLayout="column">
+                    <div fxLayout fxLayoutAlign="space-between center">
+                        <p>
+                            <span>Promoted: </span>{{ zdarticle.article.promoted }}
+                        </p>
+                        <div fxFlexAlign="center">
+                            <div ngbRadioGroup class="btn-group btn-group-sm" data-toggle="buttons" formControlName="promoted">
+                                <label class="btn-primary" ngbButtonLabel>
+                                    <input type="radio" [value]="true" ngbButton> Yes
+                                    </label>
+                                <label class="btn-primary" ngbButtonLabel>
+                                    <input type="radio" [value]="false" ngbButton> No
+                                    </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div fxLayout fxLayoutAlign="space-between center">
+                        <p>
+                            <span>Outdated: </span>{{ zdarticle.article.outdated }}
+                        </p>
+                        <div fxFlexAlign="center">
+                            <div ngbRadioGroup class="btn-group btn-group-sm" data-toggle="buttons" formControlName="outdated">
+                                <label class="btn-primary" ngbButtonLabel>
+                                    <input type="radio" [value]="true" ngbButton> Yes
+                                    </label>
+                                <label class="btn-primary" ngbButtonLabel>
+                                    <input type="radio" [value]="false" ngbButton> No
+                                    </label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div fxLayout fxLayoutAlign="space-between center">
+                        <p>
+                            <span>Draft: </span>{{ zdarticle.article.draft }}
+                        </p>
+                        <div fxFlexAlign="center">
+                            <div ngbRadioGroup class="btn-group btn-group-sm" data-toggle="buttons" formControlName="draft">
+                                <label class="btn-primary" ngbButtonLabel>
+                                    <input type="radio" [value]="true" ngbButton> Yes
+                                    </label>
+                                <label class="btn-primary" ngbButtonLabel>
+                                    <input type="radio" [value]="false" ngbButton> No
+                                    </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div fxFlex>
+                <div fxLayout="column">
+                    <p>
+                        Created: {{ zdarticle.article.created_at | date: 'medium'}}
+                    </p>
+                    <p>
+                        Last updated: {{ zdarticle.article.updated_at | date: 'dd/MM/yyyy' }}
+                    </p>
+                    <p>
+                        Tags: {{ zdarticle.article.label_names }}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

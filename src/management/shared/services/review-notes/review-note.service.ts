@@ -8,7 +8,9 @@ import 'rxjs/add/operator/do';
 
 export interface ReviewNote {
     body: string,
-    author: string,
+    user: {
+        displayName: string
+    },
     dateAdded: string,
     $key: string,
     $exists: () => boolean
@@ -27,4 +29,14 @@ export class ReviewNotesService {
         private db: AngularFireDatabase,
         private authService: AuthService
     ) { }
+
+    createReviewNote(articleKey: string, reviewNote: ReviewNote) {
+        const user = this.authService.user;
+        console.log(user);
+
+        reviewNote.dateAdded = new Date().getTime().toString();
+        reviewNote.user.displayName = user.email;
+        const formattedReviewNote = Object.assign({}, reviewNote, { articleKey });
+        console.log(formattedReviewNote);
+    }
 }

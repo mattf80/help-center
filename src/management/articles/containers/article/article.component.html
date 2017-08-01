@@ -1,13 +1,27 @@
-<div>
-  <div *ngIf="article$ | async as article; else loading">
-    <app-article-detail [article]="article" [zdarticle]="zdarticle$ | async" (changes)="updateArticle($event)"></app-article-detail>
+<div class="article">
+  <div *ngIf="zdarticle$ | async as zdarticle; else loading">
+    <div class="article__title">
+      <h1>
+        <img src="{{zdarticle.users[0].photo.content_url}}" alt="{{zdarticle.users[0].name}}">
+        <span>{{ zdarticle.article.title }}</span>
+      </h1>
+    </div>
+    <div class="article__body">
+      <zd-article-detail [zdarticle]="zdarticle" (changes)="updateArticle($event)"></zd-article-detail>
+    </div>
+  </div>
+  <hr>
+  <div *ngIf="fbArticle$ | async as fbarticle">
+    <div class="article__body">
+      <fb-article-detail [fbArticle]="fbArticle$ | async"></fb-article-detail>
+    </div>
+    <hr>
+    <app-review-note-form (create)="createReviewNote($event)"></app-review-note-form>
   </div>
   <ng-template #loading>
     <div class="message">
-      Fetching article...
+      <i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Fetching article...
     </div>
   </ng-template>
-
-  <app-review-note-form></app-review-note-form>
 </div>
-{{ article$ | async | json}} {{ zdarticle$ | async | json}}
+{{ fbArticle$ | async | json}} {{ zdarticle$ | async | json}}

@@ -5,11 +5,11 @@ import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 import { User } from './auth/shared/services/auth/auth.service';
-import { Article } from "management/shared/services/articles/articles.service";
+import { FirebaseArticle } from "management/shared/services/articles/fb-articles.service";
 
 export interface State {
   user: User,
-  articles: Article[],
+  articles: FirebaseArticle[],
   [key: string]: any
 }
 

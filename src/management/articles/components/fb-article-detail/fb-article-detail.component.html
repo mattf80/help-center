@@ -1,0 +1,17 @@
+<div fxLayout>
+    <div fxFlex="45%">
+        <h6>
+            <span>Current status: </span> EXPIRED
+        </h6>
+        <h6>
+            <span>Current expiry date: </span> {{ fbArticle.expiryDate}}
+        </h6>
+    </div>
+    <div fxFlex class="align-center">
+        <h6>
+            <span>Edit expiry date</span>
+        </h6>
+        <ngb-datepicker #dp (navigate)="date = $event.next"></ngb-datepicker>
+    </div>
+    {{ newExpiryDate }}
+</div>

@@ -1,9 +1,11 @@
+import { ReviewNote, ReviewNotesService } from './../../../shared/services/review-notes/review-note.service';
 import { Subscription } from 'rxjs/Subscription';
-import { Article } from 'management/shared/services/articles/articles.service';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { ArticlesService } from './../../../shared/services/articles/articles.service';
+import { ZendeskArticlesService, ZendeskArticle } from './../../../shared/services/articles/zd-articles.service';
+
+import { FirebaseArticlesService, FirebaseArticle } from './../../../shared/services/articles/fb-articles.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import 'rxjs/add/operator//switchMap';
@@ -16,30 +18,30 @@ import 'rxjs/add/operator//switchMap';
 
 export class ArticleComponent implements OnInit, OnDestroy {
 
-    article$: Observable<Article>;
+    zdarticle$: Observable<ZendeskArticle>;
+    fbArticle$: Observable<FirebaseArticle>;
     subscription: Subscription;
 
-    zdarticle$: Observable<any>;
-
     constructor(
-        private articlesService: ArticlesService,
+        private zdArticlesService: ZendeskArticlesService,
+        private fbArticlesService: FirebaseArticlesService,
+        private reviewNoteService: ReviewNotesService,
         private router: Router,
         private route: ActivatedRoute
     ) { }
 
     ngOnInit() {
-        this.subscription = this.articlesService.articles$.subscribe();
-        this.article$ = this.route.params
-            .switchMap(param => this.articlesService.getArticleFromFirebase(+param.id));
+        this.subscription = this.fbArticlesService.articles$.subscribe();
+        this.fbArticle$ = this.route.params
+            .switchMap(param => this.fbArticlesService.getArticleFromFirebase(+param.id));
 
         this.zdarticle$ = this.route.params
-            .switchMap(param => this.articlesService.getArticleFromZendesk(+param.id));
-        
+            .switchMap(param => this.zdArticlesService.getArticleFromZendesk(+param.id));
+
         // this.articlesService.getArticleFromZendesk(115000211763).subscribe(result => {
         //     this.zdarticle = result['article'];
         //     this.zdarticle.user = result['users'][0];
         // })
-
     }
 
     ngOnDestroy() {
@@ -49,11 +51,15 @@ export class ArticleComponent implements OnInit, OnDestroy {
     async updateArticle(event: FormGroup) {
         try {
             console.log(event.value);
-            this.articlesService.updateArticle(115000211763, event.value).subscribe(result => {
+            this.zdArticlesService.updateArticle(115000211763, event.value).subscribe(result => {
                 console.log(result);
             });
         } catch (error) {
             console.log(error.message);
         }
+    }
+
+    createReviewNote(event: ReviewNote) {
+        this.reviewNoteService.createReviewNote("pushkey" ,event);
     }
 }
