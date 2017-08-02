@@ -4,6 +4,8 @@ import { Component, OnInit, Input, OnChanges, Output, EventEmitter, SimpleChange
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+import 'rxjs/add/operator/map';
+
 @Component({
     selector: 'zd-article-detail',
     styleUrls: ['zd-article-detail.component.scss'],
@@ -24,23 +26,28 @@ export class ZendeskArticleDetailComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.fb.group({
-            draft: this.zdarticle.article.draft,
-            outdated: this.zdarticle.article.outdated,
-            promoted: this.zdarticle.article.promoted
+            id: this.zdarticle.article.id,
+            flags: this.fb.group({
+                draft: this.zdarticle.article.draft,
+                outdated: this.zdarticle.article.outdated,
+                promoted: this.zdarticle.article.promoted
+            })
         });
 
-        // this.form.get('draft').valueChanges.subscribe(value => {
-        //     console.log(value);
-        //     this.changes.emit(this.form);
-        // });
+        this.form.get('flags').valueChanges
+            .distinctUntilChanged()
+            .subscribe(value => {
+                let toSave = this.prepareSave(value);
+                this.changes.emit(toSave);
+            });
     }
+    prepareSave(value) {
+        const formModel = this.form.value;
 
-    populateForm(article: any) {
-        console.log(article);
-        this.form.patchValue({
-            draft: article.draft,
-            outdated: article.outdated,
-            promoted: article.promoted
-        });
+        const saveArticle: any = {
+            id: this.zdarticle.article.id,
+            flags: value
+        };
+        return saveArticle;
     }
 }

@@ -1,3 +1,8 @@
-<h3>
-    Review Notes!
-</h3>
+<div>
+    <h3>
+        Review Notes!
+    </h3>
+    <div *ngFor="let note of reviewNotes$ | async" >
+        {{note.body}}
+    </div>
+</div>

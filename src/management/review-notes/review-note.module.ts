@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { ReviewNotesComponent } from './containers/review-notes/review-notes.component';
-import { ReviewNoteComponent } from './containers/review-note/review-note.component';
+import { ReviewNoteComponent } from './components/review-note/review-note.component';
 
 import { ReviewNoteFormComponent } from './components/review-note-form/review-note-form.component';
 

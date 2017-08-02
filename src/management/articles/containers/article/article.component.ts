@@ -20,7 +20,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
     zdarticle$: Observable<ZendeskArticle>;
     fbArticle$: Observable<FirebaseArticle>;
-    subscription: Subscription;
+    fbsubscription: Subscription;
 
     constructor(
         private zdArticlesService: ZendeskArticlesService,
@@ -31,7 +31,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit() {
-        this.subscription = this.fbArticlesService.articles$.subscribe();
+        this.fbsubscription = this.fbArticlesService.articles$.subscribe();
         this.fbArticle$ = this.route.params
             .switchMap(param => this.fbArticlesService.getArticleFromFirebase(+param.id));
 
@@ -45,13 +45,14 @@ export class ArticleComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.subscription.unsubscribe();
+        this.fbsubscription.unsubscribe();
     }
 
-    async updateArticle(event: FormGroup) {
+    async updateArticle(event: any) {
+        
         try {
-            console.log(event.value);
-            this.zdArticlesService.updateArticle(115000211763, event.value).subscribe(result => {
+            console.log(event);
+            this.zdArticlesService.updateArticle(event.id, event.flags).subscribe(result => {
                 console.log(result);
             });
         } catch (error) {
@@ -60,6 +61,16 @@ export class ArticleComponent implements OnInit, OnDestroy {
     }
 
     createReviewNote(event: ReviewNote) {
-        this.reviewNoteService.createReviewNote("pushkey" ,event);
+        let fbArticleKey: string;
+        this.fbArticle$.subscribe(article => {
+            fbArticleKey = article.$key;
+        })
+        this.reviewNoteService.createReviewNote(fbArticleKey, event);
+    }
+
+    authorise() {
+        this.zdArticlesService.authorizeZendesk().subscribe(result => {
+            console.log(result);
+        })
     }
 }

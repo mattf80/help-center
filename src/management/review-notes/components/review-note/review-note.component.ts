@@ -11,7 +11,5 @@ export class ReviewNoteComponent implements OnInit {
 
     ngOnInit() { }
 
-    addReviewNote(event: ReviewNote) {
-        console.log(event);
-    }
+
 }

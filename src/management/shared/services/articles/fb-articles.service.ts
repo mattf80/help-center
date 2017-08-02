@@ -22,7 +22,7 @@ export interface FirebaseArticle {
     id: number,
     title: string,
     reviewNotes: ReviewNote[],
-    expiryDate: string,
+    expiryDate: number,
     $key: string,
     $exists: () => boolean
 }
@@ -54,7 +54,7 @@ export class FirebaseArticlesService {
     }
 
     findArticleById(articleId: number): Observable<FirebaseArticle> {
-        return this.db.list('esolhelpdesk1380528590/articles/', {
+        return this.db.list('/articles/', {
             query: {
                 orderByChild: 'id',
                 equalTo: articleId
