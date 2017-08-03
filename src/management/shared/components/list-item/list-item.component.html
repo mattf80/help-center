@@ -3,7 +3,7 @@
     <p class="list-item__title">{{ item.title }}</p>
     <p class="list-item__ingredients">
       <span>
-         Expires: {{ item.expiryDate }}
+         Expires: {{ item.expiryDate | date: 'dd/MM/yyyy' }}
         </span>
     </p>
   </a>

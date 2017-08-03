@@ -14,7 +14,7 @@ export const environment = {
     incremental_remoteUri: 'https://esolhelpdesk1380528590.zendesk.com/hc/api/v2'
   },
   firebase: {
-    apiKey: "",
+    apiKey: "-kDhEHzJkDHzRbCkrPtU-E",
     authDomain: "help-center-56d1d.firebaseapp.com",
     databaseURL: "https://help-center-56d1d.firebaseio.com",
     projectId: "help-center-56d1d",

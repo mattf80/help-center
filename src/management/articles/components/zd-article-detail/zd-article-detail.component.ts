@@ -2,7 +2,6 @@ import { ZendeskArticle } from './../../../shared/services/articles/zd-articles.
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import 'rxjs/add/operator/map';
 
@@ -29,7 +28,7 @@ export class ZendeskArticleDetailComponent implements OnInit {
             id: this.zdarticle.article.id,
             flags: this.fb.group({
                 draft: this.zdarticle.article.draft,
-                outdated: this.zdarticle.article.outdated,
+                comments_disabled: this.zdarticle.article.comments_disabled,
                 promoted: this.zdarticle.article.promoted
             })
         });

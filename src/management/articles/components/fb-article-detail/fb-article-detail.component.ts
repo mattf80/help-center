@@ -30,7 +30,6 @@ export class FirebaseArticleDetailComponent implements OnInit {
     }
 
     onSubmit() {
-        let epoch = new Date(this.model).getTime();
-        console.log(this.model)
+
     }
 }

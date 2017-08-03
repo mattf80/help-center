@@ -24,7 +24,7 @@ export interface ZendeskArticle {
         title: string,
         draft: boolean,
         promoted: boolean,
-        outdated: boolean,
+        comments_disabled: boolean,
         user: {
             photo: {
                 content_url: string

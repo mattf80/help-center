@@ -6,13 +6,35 @@
         <h6>
             <span>Current expiry date: </span> {{ fbArticle.expiryDate | date:'medium'}}
         </h6>
+        <div fxLayout="column">
+            <div>
+                <h6>
+                    <span>Edit expiry date</span>
+                </h6>
+            </div>
+            <div>
+                <ngb-datepicker #dp (navigate)="date = $event.next" [(ngModel)]="model"></ngb-datepicker>
+            </div>
+            <div fxFlexAlign="start">
+                <button type="button" class="btn btn-success btn-sm" (click)="onSubmit()">Save</button>
+            </div>
+        </div>
     </div>
     <div fxFlex class="align-center">
-        <h6>
-            <span>Edit expiry date</span>
-        </h6>
-        <ngb-datepicker #dp (navigate)="date = $event.next" [(ngModel)]="model"></ngb-datepicker>
-        <button type="button" class="btn btn-success btn-sm" (click)="onSubmit()">Save</button>
+        <div fxLayout="column">
+            <div>
+                <h6>
+                    <span>Edit expiry date</span>
+                </h6>
+            </div>
+            <div>
+                <ngb-datepicker #dp (navigate)="date = $event.next" [(ngModel)]="model"></ngb-datepicker>
+            </div>
+            <div fxFlexAlign="start">
+                <button type="button" class="btn btn-success btn-sm" (click)="onSubmit()">Save</button>
+            </div>
+        </div>
+
     </div>
 </div>
- {{ model | json }}
+{{ model | json }}
