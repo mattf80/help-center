@@ -5,16 +5,8 @@
 
 export const environment = {
   production: false,
-  zendesk: {
-    username: 'frowe.m@cambridgeesol.org',
-    token: '',
-    //subdomain: 'esolhelpdesk1380528590',
-    remoteUri: 'https://esolhelpdesk1380528590.zendesk.com/api/v2',
-    hcremoteUri: 'https://esolhelpdesk1380528590.zendesk.com/api/v2/help_center',
-    incremental_remoteUri: 'https://esolhelpdesk1380528590.zendesk.com/hc/api/v2'
-  },
   firebase: {
-    apiKey: "-kDhEHzJkDHzRbCkrPtU-E",
+    apiKey: "",
     authDomain: "help-center-56d1d.firebaseapp.com",
     databaseURL: "https://help-center-56d1d.firebaseio.com",
     projectId: "help-center-56d1d",

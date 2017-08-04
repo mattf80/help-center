@@ -5,10 +5,9 @@
         <img src="{{zdarticle.users[0].photo.content_url}}" alt="{{zdarticle.users[0].name}}">
         <span>{{ zdarticle.article.title }}</span>
       </h1>
-      <button type="button" class="btn btn-primary" (click)="authorise()">Oauth</button>
     </div>
     <div class="article__body">
-      <zd-article-detail [zdarticle]="zdarticle" (changes)="updateArticle($event)"></zd-article-detail>
+      <zd-article-detail [zdarticle]="zdarticle" (changes)="updateArticle($event)" (authEmitter)="authorise()"></zd-article-detail>
     </div>
   </div>
   <hr>

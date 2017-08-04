@@ -19,6 +19,9 @@ export class ZendeskArticleDetailComponent implements OnInit {
     @Output()
     changes = new EventEmitter<FormGroup>();
 
+    @Output()
+    authEmitter = new EventEmitter<any>();
+
     form: FormGroup;
 
     constructor(private fb: FormBuilder) { }
@@ -49,4 +52,10 @@ export class ZendeskArticleDetailComponent implements OnInit {
         };
         return saveArticle;
     }
+
+    authorise() {
+        this.authEmitter.emit();
+    }
+
+    
 }

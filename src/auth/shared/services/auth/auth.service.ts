@@ -40,6 +40,10 @@ export class AuthService {
         return this.af.auth.currentUser;
     }
 
+    get currentToken() {
+        return this.af.auth.currentUser.getIdToken(true);
+    }
+
     createUser(email: string, password: string) {
         return this.af.auth.createUserWithEmailAndPassword(email, password);
     }

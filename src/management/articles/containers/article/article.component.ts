@@ -31,6 +31,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit() {
+        this.authorise();
         this.fbsubscription = this.fbArticlesService.articles$.subscribe();
         this.fbArticle$ = this.route.params
             .switchMap(param => this.fbArticlesService.getArticleFromFirebase(+param.id));
@@ -49,7 +50,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     }
 
     async updateArticle(event: any) {
-        
+
         try {
             console.log(event);
             this.zdArticlesService.updateArticle(event.id, event.flags).subscribe(result => {
@@ -69,8 +70,14 @@ export class ArticleComponent implements OnInit, OnDestroy {
     }
 
     authorise() {
-        this.zdArticlesService.authorizeZendesk().subscribe(result => {
-            console.log(result);
-        })
+        let existingtoken = localStorage.getItem('zdauth');
+        if (existingtoken) {
+            console.log("Existing token found...");
+            return existingtoken;
+        } else {
+            this.zdArticlesService.getAuthToken().subscribe(result => {
+                console.log("New token fetched: ", result);
+            })
+        }
     }
 }

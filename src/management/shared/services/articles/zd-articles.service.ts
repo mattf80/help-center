@@ -3,7 +3,6 @@ import { Store } from './../../../../store';
 import { AuthService } from './../../../../auth/shared/services/auth/auth.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { environment } from './../../../../environments/environment';
 
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/filter';
@@ -16,6 +15,10 @@ interface ItemsResponse {
 
 interface ItemResponse {
     article: any;
+}
+
+interface AuthResponse {
+    token: any;
 }
 
 export interface ZendeskArticle {
@@ -37,46 +40,36 @@ export interface ZendeskArticle {
 export class ZendeskArticlesService {
 
     zendeskClient = {
-        username: 'frowe.m@cambridgeesol.org',
-        token: environment.zendesk.token,
-        remoteUri: 'https://esolhelpdesk1380528590.zendesk.com/api/v2/help_center/articles',
-        oAuth: '55af4ab69fbf3e8f8c858cb5c68676956206ea24386950ebcda50d94019fefc7'
+        oauthtoken: localStorage.getItem('zdauth'),
+        remoteUri: 'https://esolhelpdesk1380528590.zendesk.com/api/v2/help_center/articles'
     }
-
-    auth = btoa(this.zendeskClient.username + '/token:' + this.zendeskClient.token);
+    firebasetoken: string;
 
     constructor(
         private store: Store,
         private authService: AuthService,
         private http: HttpClient
-    ) { }
+    ) {
+        this.authService.currentToken.then(token => {
+            this.firebasetoken = token
+        });
+    }
 
     get uid() {
         return this.authService.user.uid;
     }
 
-    authorizeZendesk() {
-        return this.http.get<any>('https://esolhelpdesk1380528590.zendesk.com/oauth/authorizations/new', {
-            params: new HttpParams()
-                .set('response_type', 'code')
-                .set('redirect_uri', 'http://localhost:4200/')
-                .set('client_id', 'matts_app')
-                .set('scope', 'read')
-        });
-    }
-
     getArticleFromZendesk(articleId: number) {
         return this.http.get<ItemResponse>(`${this.zendeskClient.remoteUri}/${articleId}.json?include=users`, {
-            headers: new HttpHeaders({ 'Authorization': `Basic ${this.auth}` })
+            headers: new HttpHeaders({ 'Authorization': `Bearer ${this.zendeskClient.oauthtoken}` })
         });
     }
 
     updateArticle(articleId: number, flags: any) {
-        //console.log("From the service: ", draftStatus)
         const headers = new HttpHeaders()
             .set('Content-Type', 'application/json')
             //.set('Authorization', `Bearer ${this.zendeskClient.oAuth}`)
-            .set('Authorization', `Basic ${this.auth}`);
+            .set('Authorization', `Bearer ${this.zendeskClient.oauthtoken}`);
 
         let body = { "translation": flags };
 
@@ -84,4 +77,13 @@ export class ZendeskArticlesService {
             { headers })
             .do(data => console.log(data));
     }
+
+    getAuthToken() {
+        return this.http.get<AuthResponse>('http://localhost:3000/api/zendesk/zd_oauth', {
+            headers: new HttpHeaders().set('Authorization', `Bearer ${this.firebasetoken}`)
+        })
+            .map(response => response.token.full_token)
+            .do(response => localStorage.setItem('zdauth', response))
+    }
+
 }
