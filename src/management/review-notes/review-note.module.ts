@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { SharedModule } from './../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,14 +13,15 @@ export const ROUTES: Routes = [];
 
 @NgModule({
     imports: [
+        CommonModule,
         ReactiveFormsModule,
         RouterModule.forChild(ROUTES),
         SharedModule
     ],
     exports: [],
     declarations: [
-        ReviewNotesComponent,
         ReviewNoteComponent,
+        ReviewNotesComponent,        
         ReviewNoteFormComponent
     ],
     providers: [],

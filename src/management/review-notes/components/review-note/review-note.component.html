@@ -1,3 +1,16 @@
 <div class="review-note">
+  <div class="comment-container">
+    <div class="comment-body">
+      <p>
+        {{ reviewNote.body }}
+      </p>
+    </div>
+  </div>
+  <div class="comment-meta">
+    <p class="meta-text">
+      {{ reviewNote.dateAdded | date:'medium'}} {{reviewNote.user.displayName}}
+    </p>
+  </div>
+
 
 </div>

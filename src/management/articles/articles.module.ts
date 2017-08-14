@@ -1,3 +1,4 @@
+import { ReviewNoteComponent } from './../review-notes/components/review-note/review-note.component';
 
 
 
@@ -15,7 +16,7 @@ import { FirebaseArticleDetailComponent } from './components/fb-article-detail/f
 import { ReviewNotesComponent } from './../review-notes/containers/review-notes/review-notes.component';
 
 import { ReviewNoteFormComponent } from './../review-notes/components/review-note-form/review-note-form.component';
-import { MdDatepickerModule, MdSlideToggleModule  } from '@angular/material';
+import { MdDatepickerModule, MdSlideToggleModule, MdInputModule } from '@angular/material';
 
 export const ROUTES: Routes = [
     {
@@ -35,7 +36,8 @@ export const ROUTES: Routes = [
         NgbModule,
         SharedModule,
         MdDatepickerModule,
-        MdSlideToggleModule
+        MdSlideToggleModule,
+        MdInputModule
     ],
     exports: [],
     declarations: [
@@ -43,6 +45,7 @@ export const ROUTES: Routes = [
         ArticleComponent,
         ReviewNotesComponent,
         ReviewNoteFormComponent,
+        ReviewNoteComponent,
         ZendeskArticleDetailComponent,
         FirebaseArticleDetailComponent
     ]

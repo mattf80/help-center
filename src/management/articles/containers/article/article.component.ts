@@ -21,6 +21,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     zdarticle$: Observable<ZendeskArticle>;
     fbArticle$: Observable<FirebaseArticle>;
     fbsubscription: Subscription;
+    articleKey: string;
 
     constructor(
         private zdArticlesService: ZendeskArticlesService,
@@ -61,12 +62,15 @@ export class ArticleComponent implements OnInit, OnDestroy {
         }
     }
 
+    getArticleKey() {
+        return this.fbArticle$.subscribe(article => {
+            this.articleKey = article.$key
+        });
+    }
+
     createReviewNote(event: ReviewNote) {
-        let fbArticleKey: string;
-        this.fbArticle$.subscribe(article => {
-            fbArticleKey = article.$key;
-        })
-        this.reviewNoteService.createReviewNote(fbArticleKey, event);
+        this.getArticleKey();
+        this.reviewNoteService.createReviewNote(this.articleKey, event);
     }
 
     authorise() {
@@ -79,5 +83,10 @@ export class ArticleComponent implements OnInit, OnDestroy {
                 console.log("New token fetched: ", result);
             })
         }
+    }
+
+    async updateFbArticle(event: FirebaseArticle) {
+        this.getArticleKey();
+        const savedArticle = await this.fbArticlesService.updateFbArticle(this.articleKey, event);
     }
 }

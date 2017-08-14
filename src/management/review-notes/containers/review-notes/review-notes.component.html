@@ -1,8 +1,5 @@
-<div>
-    <h3>
-        Review Notes!
-    </h3>
-    <div *ngFor="let note of reviewNotes$ | async" >
-        {{note.body}}
+<div *ngIf="reviewNotes$ | async as reviewNotes">
+    <div *ngFor="let note of reviewNotes" >
+        <app-review-note [reviewNote]="note"></app-review-note>
     </div>
 </div>

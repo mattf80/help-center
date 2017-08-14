@@ -1,40 +1,27 @@
 <div fxLayout>
     <div fxFlex="45%">
+        <label>
+                    <h6 class="fb-article-form__subtitle">Expiry</h6>
+                    </label>
         <h6>
             <span>Current status: </span> EXPIRED
         </h6>
         <h6>
-            <span>Current expiry date: </span> {{ fbArticle.expiryDate | date:'medium'}}
+            <span>Current expiry date: </span> {{ fbArticle.expiryDate | date:'dd/MM/yyyy'}}
         </h6>
-        <div fxLayout="column">
-            <div>
-                <h6>
-                    <span>Edit expiry date</span>
-                </h6>
-            </div>
-            <div>
-                <ngb-datepicker #dp (navigate)="date = $event.next" [(ngModel)]="model"></ngb-datepicker>
-            </div>
-            <div fxFlexAlign="start">
-                <button type="button" class="btn btn-success btn-sm" (click)="onSubmit()">Save</button>
-            </div>
-        </div>
     </div>
     <div fxFlex class="align-center">
-        <div fxLayout="column">
-            <div>
-                <h6>
-                    <span>Edit expiry date</span>
-                </h6>
+        <form [formGroup]="form" (ngSubmit)="updateFbArticle()">
+            <div fxLayout="column">
+                <md-input-container>
+                    <input mdInput [mdDatepicker]="picker" formControlName="expiryDate">
+                    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+                </md-input-container>
+                <md-datepicker #picker></md-datepicker>
+                <div fxFlexAlign="start">
+                    <button type="submit" class="btn btn-success btn-sm">Save</button>
+                </div>
             </div>
-            <div>
-                <ngb-datepicker #dp (navigate)="date = $event.next" [(ngModel)]="model"></ngb-datepicker>
-            </div>
-            <div fxFlexAlign="start">
-                <button type="button" class="btn btn-success btn-sm" (click)="onSubmit()">Save</button>
-            </div>
-        </div>
-
+        </form>
     </div>
 </div>
-{{ model | json }}

@@ -1,6 +1,7 @@
 import { environment } from './../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -24,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 //third part
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MdNativeDateModule } from "@angular/material";
 
 //routes
 export const ROUTES: Routes = [
@@ -38,6 +40,7 @@ export const ROUTES: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     HttpModule,
@@ -46,7 +49,8 @@ export const ROUTES: Routes = [
     FlexLayoutModule,
     NgbModule.forRoot(),
     AuthModule,
-    ManagementModule
+    ManagementModule,
+    MdNativeDateModule
   ],
   providers: [
     Store

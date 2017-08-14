@@ -62,4 +62,8 @@ export class FirebaseArticlesService {
         })
             .map(results => results[0]);
     }
+
+    updateFbArticle(key: string, fbarticle: FirebaseArticle) {
+        return this.db.object(`/articles/${key}`).update(fbarticle);
+    }
 }

@@ -1,27 +1,31 @@
-<div class="article">
-  <div *ngIf="zdarticle$ | async as zdarticle; else loading">
-    <div class="article__title">
-      <h1>
-        <img src="{{zdarticle.users[0].photo.content_url}}" alt="{{zdarticle.users[0].name}}">
-        <span>{{ zdarticle.article.title }}</span>
-      </h1>
-    </div>
-    <div class="article__body">
-      <zd-article-detail [zdarticle]="zdarticle" (changes)="updateArticle($event)" (authEmitter)="authorise()"></zd-article-detail>
-    </div>
-  </div>
-  <hr>
-  <div *ngIf="fbArticle$ | async as fbarticle">
-    <div class="article__body">
-      <fb-article-detail [fbArticle]="fbArticle$ | async"></fb-article-detail>
+<div>
+  <a class="btn btn-sm btn-info" [routerLink]="['../']">Back</a>
+
+  <div class="article">
+    <div *ngIf="zdarticle$ | async as zdarticle; else loading">
+      <div class="article__title">
+        <h1>
+          <img src="{{zdarticle.users[0].photo.content_url}}" alt="{{zdarticle.users[0].name}}">
+          <span>{{ zdarticle.article.title }}</span>
+        </h1>
+      </div>
+      <div class="article__body">
+        <zd-article-detail [zdarticle]="zdarticle" (changes)="updateArticle($event)" (authEmitter)="authorise()"></zd-article-detail>
+      </div>
     </div>
     <hr>
-    <app-review-note-form (create)="createReviewNote($event)"></app-review-note-form>
-    <review-notes [fbArticle]="fbarticle"></review-notes>
-  </div>
-  <ng-template #loading>
-    <div class="message">
-      <i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Fetching article...
+    <div *ngIf="fbArticle$ | async as fbarticle">
+      <div class="article__body">
+        <fb-article-detail [fbArticle]="fbArticle$ | async" (updatingArticle)="updateFbArticle($event)"></fb-article-detail>
+      </div>
+      <hr>
+      <app-review-note-form (create)="createReviewNote($event)"></app-review-note-form>
+      <review-notes [fbArticle]="fbarticle"></review-notes>
     </div>
-  </ng-template>
+    <ng-template #loading>
+      <div class="message">
+        <i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Fetching article...
+      </div>
+    </ng-template>
+  </div>
 </div>
