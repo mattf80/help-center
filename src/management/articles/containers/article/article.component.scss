@@ -29,8 +29,11 @@
     border-bottom: 1px solid #c1cedb;
   }  
   &__body {
-    padding: 24px;
+    padding: 10px 24px;
   }
+}
+hr {
+  margin: 0;
 }
 .message {
   display: flex;

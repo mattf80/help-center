@@ -7,7 +7,7 @@
                     placeholder="Add your note here"
                     formControlName="body">
             </label>
-            <button type="submit" class="review-note-form__add">
+            <button type="submit" class="btn btn-sm btn-success" [disabled]="!form.valid">
                 Save
             </button>
         </div>

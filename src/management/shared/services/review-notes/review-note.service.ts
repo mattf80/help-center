@@ -16,7 +16,8 @@ import { Subject } from "rxjs/Subject";
 export interface ReviewNote {
     body: string,
     user: {
-        displayName: string
+        displayName: string,
+        photo: string
     },
     dateAdded: string,
     $key: string,
@@ -64,9 +65,11 @@ export class ReviewNotesService {
 
     createReviewNote(articleKey: string, reviewNote: ReviewNote) {
         const user = this.authService.user;
+        console.log(user);
 
         reviewNote.dateAdded = new Date().getTime().toString();
         reviewNote.user.displayName = user.email;
+        reviewNote.user.photo = user.photoURL;
         const formattedReviewNote = Object.assign({}, reviewNote, { articleKey });
 
         const newNoteKey = this.db.database.ref('/reviewNotes').push().key;
