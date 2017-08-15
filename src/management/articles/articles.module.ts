@@ -16,7 +16,7 @@ import { FirebaseArticleDetailComponent } from './components/fb-article-detail/f
 import { ReviewNotesComponent } from './../review-notes/containers/review-notes/review-notes.component';
 
 import { ReviewNoteFormComponent } from './../review-notes/components/review-note-form/review-note-form.component';
-import { MdDatepickerModule, MdSlideToggleModule, MdInputModule } from '@angular/material';
+import { MdDatepickerModule, MdSlideToggleModule, MdInputModule, MdButtonToggleModule } from '@angular/material';
 
 export const ROUTES: Routes = [
     {
@@ -37,7 +37,8 @@ export const ROUTES: Routes = [
         SharedModule,
         MdDatepickerModule,
         MdSlideToggleModule,
-        MdInputModule
+        MdInputModule,
+        MdButtonToggleModule
     ],
     exports: [],
     declarations: [
