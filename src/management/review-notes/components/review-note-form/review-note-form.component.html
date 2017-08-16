@@ -1,15 +1,17 @@
 <div class="review-note-form">
     <form [formGroup]="form" (ngSubmit)="createReviewNote()">
-        <div class="review-note-form__name">
-            <label>
-                <h3>Note text</h3>
-                <input type="text"
-                    placeholder="Add your note here"
-                    formControlName="body">
-            </label>
-            <button type="submit" class="btn btn-sm btn-success" [disabled]="!form.valid">
-                Save
-            </button>
+        <div fxLayout fxLayoutAlign="space-between center">
+            <div fxFlex="75%">
+                <label>
+                            <input type="text"
+                                placeholder="Add your note here"
+                                formControlName="body">
+                        </label>
+            </div>
+            <div fxFlex fxFlexAlign="end">
+                <button md-button type="submit" [disabled]="!form.valid">Save</button>
+            </div>
+
         </div>
     </form>
 </div>

@@ -1,20 +1,22 @@
-<div class="review-note" fxLayout fxLayoutAlign="center center">
-  <div fxFlex="20%" fxFlexAlign="center">
+<div class="review-note" fxLayout>
+  <div fxFlex="8%">
     <img class="note-avatar" src="https://secure.gravatar.com/avatar/9682a67371e4074f49e09910eefa1016?d=https%3A//assets.zendesk.com/images/2016/default-avatar-80.png&amp;s=80&amp;r=g"
       alt="">
   </div>
-  <div fxLayout="column">
-    <div fxFlexFill class="comment-container">
-      <div class="comment-body">
-        <p>
-          {{ reviewNote.body }}
+  <div fxFlex>
+    <div fxLayout="column">
+      <div fxFlexFill>
+        <div class="comment-body">
+          <p class="mat-body-1">
+            {{ reviewNote.body }}
+          </p>
+        </div>
+      </div>
+      <div fxFlex class="comment-meta">
+        <p class="mat-caption">
+          Added {{ reviewNote.dateAdded | date:'dd/MM/yyyy'}} by {{reviewNote.user.displayName}}
         </p>
       </div>
-    </div>
-    <div fxFlex class="comment-meta">
-      <p class="meta-text">
-        Added {{ reviewNote.dateAdded | date:'medium'}} by {{reviewNote.user.displayName}}
-      </p>
     </div>
   </div>
 </div>

@@ -16,17 +16,31 @@ import { ListItemComponent } from './components/list-item/list-item.component';
 import { ZendeskArticlesService } from './services/articles/zd-articles.service';
 import { FirebaseArticlesService } from './services/articles/fb-articles.service';
 
+import { MdDatepickerModule, MdSlideToggleModule, MdInputModule, MdButtonToggleModule, MdButtonModule, MdIconModule } from '@angular/material';
+
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
         AngularFireDatabaseModule,
         FlexLayoutModule,
-        NgbModule
+        NgbModule,
+        MdDatepickerModule,
+        MdSlideToggleModule,
+        MdInputModule,
+        MdButtonToggleModule,
+        MdButtonModule,
+        MdIconModule
     ],
     exports: [
         ListItemComponent,
-        FlexLayoutModule
+        FlexLayoutModule,
+        MdDatepickerModule,
+        MdSlideToggleModule,
+        MdInputModule,
+        MdButtonToggleModule,
+        MdButtonModule,
+        MdIconModule
     ],
     declarations: [
         ListItemComponent

@@ -1,14 +1,15 @@
 :host {
   display: block;
-  margin: 5px 0;
+  margin: 8px 0;
 }
 .review-note {
   position: relative;
-  background: #fff;
+  background: #f6fafd;
   box-shadow: 0 3px 4px rgba(0,0,0,.1);
   border: 1px solid #c1cedb;
   border-radius: 3px;
   overflow: hidden;
+  padding: 8px;
   h1 {
     flex-grow: 1;
     display: flex;
@@ -30,14 +31,21 @@
 }
 .note-avatar {
   border-radius: 32px;
-  max-width: 48px;
+  max-width: 36px;
 }
 .comment-body {
-  background-color: coral;
-  margin: 6px 2px 6px 0;
-  text-overflow: ellipsis;
-  max-width: 100%
-
+  outline: 0;
+  font-size: 16px;
+  padding: 10px 40px 10px 15px;
+  margin: 0 0 10px 0;
+  background: #fff;
+  color: #545e6f;
+  flex-grow: 1;
+  border: 1px solid #d1deeb;
+  border-radius: 3px;
+}
+p {
+  margin: 0;
 }
 .meta-text {
   font-size: 14px;

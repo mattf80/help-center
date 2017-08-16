@@ -19,9 +19,8 @@ export class FirebaseArticleDetailComponent implements OnInit, OnChanges {
     @Output()
     updatingArticle = new EventEmitter<FirebaseArticle>();
 
-    model: NgbDateStruct;
     currentExpiryDate: string;
-    date: moment.Moment;
+    date: moment.Moment = moment();
     monthsToAdd: number = 6;
 
     form = this.fb.group({
@@ -42,14 +41,13 @@ export class FirebaseArticleDetailComponent implements OnInit, OnChanges {
     }
 
     addMonths(value: number) {
-        this.date = moment();
-        this.date.add(value, 'months');
-        console.log(this.date.toString());
-        this.form.patchValue({ expiryDate: this.date.toString() })
+        let newDate = moment();
+        newDate.add(value, 'months');
+        console.log(newDate.toDate());
+        this.form.patchValue({ expiryDate: newDate.toString() })
     }
 
     ngOnInit() {
-        this.model = {year: moment(this.fbArticle.expiryDate).year(), month: moment(this.fbArticle.expiryDate).month()+1, day: moment(this.fbArticle.expiryDate).date()};
         this.newExpiryDate = new Date().toLocaleDateString();
     }
 

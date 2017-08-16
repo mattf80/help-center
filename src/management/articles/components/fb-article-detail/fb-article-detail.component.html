@@ -1,56 +1,40 @@
 <div fxLayout="column" class="fb-article-form">
-    <div fxFlex>
-        <h3>Expiration information</h3>
+    <div fxLayout fxLayoutAlign="space-between start" class="article-text-info">
+        <span>Current status: </span>
+        <span>Expired</span>
     </div>
-    <div fxFlex>
-        <div fxLayout>
-            <div fxFlex="45%">
-                <div fxLayout="column">
-                    <div fxLayout fxLayoutAlign="space-between center">
-                        <p>
-                            <span>Current status: </span>
-                        </p>
-                        <div fxFlexAlign="center">
-                            <p>Expired</p>
-                        </div>
+    <div fxLayout fxLayoutAlign="space-between start" class="article-text-info">
+        <span>Current expiry date: </span>
+        <span>{{ fbArticle.expiryDate | date:'dd/MM/yyyy'}}</span>
+    </div>
+    <div fxFlex fxFlexAlign="center" class="new-expiry-form">
 
-                    </div>
-                    <div fxLayout fxLayoutAlign="space-between center">
-                        <p>
-                            <span>Current expiry date: </span>
-                        </p>
-                        <div fxFlexAlign="center">
-                            <p> {{ fbArticle.expiryDate | date:'dd/MM/yyyy'}}</p>
-                        </div>
 
-                    </div>
+        <h3 class="mat-h3">Set new expiry date</h3>
+        <div class="quick-buttons">
+            <md-button-toggle-group #group="mdButtonToggleGroup" vertical="false" (change)="addMonths(group.value)">
+                <md-button-toggle value="3">
+                    3 months
+                </md-button-toggle>
+                <md-button-toggle value="6">
+                    6 months
+                </md-button-toggle>
+                <md-button-toggle value="12">
+                    12 months
+                </md-button-toggle>
+            </md-button-toggle-group>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="updateFbArticle()">
+            <div fxLayout="column">
+                <md-input-container>
+                    <input mdInput [mdDatepicker]="picker" formControlName="expiryDate">
+                    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+                </md-input-container>
+                <md-datepicker #picker></md-datepicker>
+                <div fxFlexAlign="end">
+                    <button md-button type="submit">Save</button>
                 </div>
             </div>
-            <div fxFlex class="align-center">
-                <md-button-toggle-group #group="mdButtonToggleGroup" vertical="false" (change)="addMonths(group.value)">
-                    <md-button-toggle value="3">
-                        3 months
-                    </md-button-toggle>
-                    <md-button-toggle value="6">
-                        6 months
-                    </md-button-toggle>
-                    <md-button-toggle value="12">
-                        12 months
-                    </md-button-toggle>
-                </md-button-toggle-group>
-                <form [formGroup]="form" (ngSubmit)="updateFbArticle()">
-                    <div fxLayout="column">
-                        <md-input-container>
-                            <input mdInput [mdDatepicker]="picker" formControlName="expiryDate">
-                            <button mdSuffix [mdDatepickerToggle]="picker"></button>
-                        </md-input-container>
-                        <md-datepicker #picker></md-datepicker>
-                        <div fxFlexAlign="start">
-                            <button type="submit" class="btn btn-success btn-sm">Save</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+        </form>
     </div>
 </div>

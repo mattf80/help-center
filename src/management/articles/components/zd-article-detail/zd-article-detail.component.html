@@ -1,77 +1,35 @@
 <div *ngIf="zdarticle">
     <form [formGroup]="form">
-        <div fxLayout fxLayoutGap="24px">
-
-            <div class="article__metadata" fxFlex="45%">
-                <div fxLayout="column" formGroupName="flags">
-                    <div fxLayout fxLayoutAlign="space-between center">
-                        <p>
-                            <span>Promoted: </span>
-                        </p>
-                        <div fxFlexAlign="center">
-                            <section>
-                                <md-slide-toggle formControlName="promoted"></md-slide-toggle>
-                            </section>
-                        </div>
-
-                    </div>
-
-                    <div fxLayout fxLayoutAlign="space-between center">
-                        <p>
-                            <span>Comments disabled: </span>
-                        </p>
-                        <div fxFlexAlign="center">
-                            <section>
-                                <md-slide-toggle formControlName="comments_disabled"></md-slide-toggle>
-                            </section>
-                        </div>
-                    </div>
-                    <div fxLayout fxLayoutAlign="space-between center">
-                        <p>
-                            <span>Draft: </span>
-                        </p>
-                        <div fxFlexAlign="center">
-                            <section>
-                                <md-slide-toggle formControlName="draft"></md-slide-toggle>
-                            </section>
-                        </div>
-                    </div>
-                </div>
+        <div fxLayout="column" formGroupName="flags">
+            <div fxLayout fxLayoutAlign="space-between start" class="article-text-info">
+                <span>Promoted: </span>
+                <section>
+                    <md-slide-toggle formControlName="promoted"></md-slide-toggle>
+                </section>
             </div>
-            <div fxFlex>
-                <div fxLayout="column">
-                    <div fxLayout fxLayoutAlign="space-between center">
-                        <p>
-                            <span>Created: </span>
-                        </p>
-                        <div fxFlexAlign="center">
-                            <p>
-                                {{ zdarticle.article.created_at | date: 'medium'}}
-                            </p>
-                        </div>
-                    </div>
-                    <div fxLayout fxLayoutAlign="space-between center">
-                        <p>
-                            <span>Last updated: </span>
-                        </p>
-                        <div fxFlexAlign="center">
-                            <p>
-                                {{ zdarticle.article.updated_at | date: 'medium'}}
-                            </p>
-                        </div>
-                    </div>
-                    <div fxLayout fxLayoutAlign="space-between center">
-                        <p>
-                            <span>Tags: </span>
-                        </p>
-                        <div fxFlexAlign="center">
-                            <p>
-                                {{ zdarticle.article.label_names}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
+            <div fxLayout fxLayoutAlign="space-between start" class="article-text-info">
+                <span>Comments disabled: </span>
+                <section>
+                    <md-slide-toggle formControlName="comments_disabled"></md-slide-toggle>
+                </section>
+            </div>
+            <div fxLayout fxLayoutAlign="space-between start" class="article-text-info">
+                <span>Draft: </span>
+                <section>
+                    <md-slide-toggle formControlName="draft"></md-slide-toggle>
+                </section>
+            </div>
+            <div fxLayout fxLayoutAlign="space-between start" class="article-text-info">
+                <span>Created: </span>
+                <span>{{ zdarticle.article.created_at | date: 'medium'}}</span>
+            </div>
+            <div fxLayout fxLayoutAlign="space-between start" class="article-text-info">
+                <span>Last updated: </span>
+                <span>{{ zdarticle.article.updated_at | date: 'medium'}}</span>
+            </div>
+            <div fxLayout fxLayoutAlign="space-between start" class="article-text-info">
+                <span>Tags: </span>
+                <span>{{ zdarticle.article.label_names}}</span>
             </div>
         </div>
     </form>

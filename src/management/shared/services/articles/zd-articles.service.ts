@@ -28,6 +28,9 @@ export interface ZendeskArticle {
         draft: boolean,
         promoted: boolean,
         comments_disabled: boolean,
+        created_at: string,
+        updated_at: string,
+        label_names: Array<string>,
         user: {
             photo: {
                 content_url: string

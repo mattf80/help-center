@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 //third part
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MdNativeDateModule } from "@angular/material";
+import 'hammerjs';
 
 //routes
 export const ROUTES: Routes = [

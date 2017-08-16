@@ -52,7 +52,13 @@ export class ReviewNotesService {
         const article$ = this.findArticleById(articleId);
 
         const notesPerArticle$ = article$
-            .switchMap(article => this.db.list('/articles-reviewNotes/' + article.$key));
+            .switchMap(article => this.db.list('/articles-reviewNotes/' + article.$key, {
+                query: {
+                    orderByKey: true,
+                    limitToLast: 5
+                }
+            })
+            .map(array => array.reverse()));
             
 
         return notesPerArticle$
@@ -65,7 +71,6 @@ export class ReviewNotesService {
 
     createReviewNote(articleKey: string, reviewNote: ReviewNote) {
         const user = this.authService.user;
-        console.log(user);
 
         reviewNote.dateAdded = new Date().getTime().toString();
         reviewNote.user.displayName = user.email;

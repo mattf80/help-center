@@ -1,6 +1,18 @@
 .align-center {
     text-align: center;
 }
+div.article-text-info {
+  padding: 8px 0;
+  min-height: 25px;
+}
+.quick-buttons {
+  margin: 8px 0;
+}
+.new-expiry-form {
+  border: 1px solid #c1cedb;
+  border-radius: 5px;
+  padding: 10px;
+}
 
 %button {
   outline: 0;
@@ -124,30 +136,35 @@
     font-size: 18px !important;
     font-weight: 600;
   }
-  label {
+  label.mat-button-toggle-label {
     position: relative;
     display: block;
-    margin: 0 0 10px;
+    margin: 0 !important;
   }
-  input {
-    outline: 0;
-    font-size: 16px;
-    padding: 10px 40px 10px 15px;
-    margin: 0;
-    width: 100%;
-    background: #fff;
-    color: #545e6f;
-    flex-grow: 1;
-    border: 1px solid #d1deeb;
-    border-radius: 3px;
-    transition: all 0.2s ease-in-out;
-    &:focus {
-      border-color: #a5b9ce;
-    }
-    &::-webkit-input-placeholder {
-      color: #aaa;
-    }
+
+  button {
+    text-transform: uppercase;
+    color: #39a1e7;
   }
+  // input {
+  //   outline: 0;
+  //   font-size: 16px;
+  //   padding: 10px 40px 10px 15px;
+  //   margin: 0;
+  //   width: 100%;
+  //   background: #fff;
+  //   color: #545e6f;
+  //   flex-grow: 1;
+  //   border: 1px solid #d1deeb;
+  //   border-radius: 3px;
+  //   transition: all 0.2s ease-in-out;
+  //   &:focus {
+  //     border-color: #a5b9ce;
+  //   }
+  //   &::-webkit-input-placeholder {
+  //     color: #aaa;
+  //   }
+  // }
   .button {
     cursor: pointer;
     outline: 0;
